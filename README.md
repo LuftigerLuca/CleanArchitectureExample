@@ -5,13 +5,13 @@ The goal is to create a modular, testable, and maintainable software structure w
 
 ## What is Clean Architecture?
 
-**Clean Architecture** is a software design philosophy that emphasizes the separation of concerns and dependency direction.
-The key rule is that **dependencies point inward** — meaning:
+**Clean Architecture** separates concerns into concentric layers and enforces **inward-pointing dependencies**:
 
-* The **domain layer** knows nothing about frameworks, databases, or web APIs.
-* **Outer layers** (like web or persistence) implement interfaces defined by the inner layers.
+* The **Domain layer** contains pure business rules and is completely framework-agnostic.
+* The **Application layer** orchestrates use cases and defines ports (interfaces) needed by the use cases.
+* The **Interface layer** provides **adapters** (incoming and outgoing) that implement those ports — e.g., web controllers, presenters, persistence repositories.
 
-This leads to systems that are **highly testable, extendable, and independent** of external technologies.
+Outer layers depend on inner layers, never the other way around. Interfaces (ports) are defined in the inner layers; implementations (adapters) live in the Interface layer.
 
 ![Clean Architecture Overview](https://blog.cleancoder.com/uncle-bob/images/2012-08-13-the-clean-architecture/CleanArchitecture.jpg)  
 *Source: [The Clean Code Blog](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)*
