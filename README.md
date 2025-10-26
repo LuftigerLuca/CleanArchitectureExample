@@ -13,6 +13,10 @@ The key rule is that **dependencies point inward** — meaning:
 
 This leads to systems that are **highly testable, extendable, and independent** of external technologies.
 
+![Clean Architecture Overview](https://blog.cleancoder.com/uncle-bob/images/2012-08-13-the-clean-architecture/CleanArchitecture.jpg)  
+*Source: [The Clean Code Blog](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)*
+
+
 ## Benefits
 
 * **High Testability:** Business logic can be tested without involving databases, frameworks, or network layers.
