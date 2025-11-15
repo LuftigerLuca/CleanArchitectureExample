@@ -6,8 +6,8 @@ import org.springframework.context.annotation.ComponentScan
 
 @SpringBootApplication
 @ComponentScan(basePackages = ["eu.luftiger.cae.bootstrap", "eu.luftiger.cae.web"])
-open class ReleaseTheSauceApplication
+open class CAEApplication
 
 fun main(args: Array<String>) {
-    runApplication<ReleaseTheSauceApplication>(*args)
+    runApplication<CAEApplication>(*args)
 }

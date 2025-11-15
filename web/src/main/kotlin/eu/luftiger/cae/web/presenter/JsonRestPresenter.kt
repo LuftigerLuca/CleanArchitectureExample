@@ -1,7 +1,6 @@
 package eu.luftiger.cae.web.presenter
 
-import eu.luftiger.cae.application.OutputBoundary
-import eu.luftiger.cae.web.model.ErrorWebResponse
+import eu.luftiger.cae.application.common.OutputBoundary
 import jakarta.servlet.http.HttpServletResponse
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
@@ -14,24 +13,20 @@ internal abstract class JsonRestPresenter<R>(
     private val httpServletResponse: HttpServletResponse,
     private val jacksonConverter: MappingJackson2HttpMessageConverter
 ) : OutputBoundary<R> {
-    fun Any.presentAsHttp200Response() {
-        val outputMessage = DelegatingServerHttpResponse(ServletServerHttpResponse(httpServletResponse))
 
-        httpServletResponse.status = HttpStatus.OK.value()
-        try {
-            jacksonConverter.write(this, MediaType.APPLICATION_JSON, outputMessage);
-        } catch (e: IOException) {
-            throw RuntimeException(e)
-        }
+    fun Any.presentAsJson(status: HttpStatus = HttpStatus.OK) {
+        writeJson(this, status)
     }
 
-    fun presentInternalServerErrorResponse(message: String) {
+    private fun writeJson(obj: Any, status: HttpStatus) {
         val outputMessage = DelegatingServerHttpResponse(ServletServerHttpResponse(httpServletResponse))
-
-        httpServletResponse.status = HttpStatus.INTERNAL_SERVER_ERROR.value()
-
+        httpServletResponse.status = status.value()
         try {
-            jacksonConverter.write(ErrorWebResponse(message, 500), MediaType.APPLICATION_JSON, outputMessage);
+            jacksonConverter.write(
+                obj,
+                MediaType.APPLICATION_JSON,
+                outputMessage
+            )
         } catch (e: IOException) {
             throw RuntimeException(e)
         }

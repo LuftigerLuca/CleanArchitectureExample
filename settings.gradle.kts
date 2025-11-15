@@ -20,7 +20,7 @@ dependencyResolutionManagement {
             // spring boot
             library("spring-boot-starter", "org.springframework.boot", "spring-boot-starter").withoutVersion()
             library("spring-boot-web", "org.springframework.boot", "spring-boot-starter-web").withoutVersion()
-            library("spring-boot-jpa", "org.springframework.boot", "spring-boot-starter-data-jpa").withoutVersion()
+            //library("spring-boot-jpa", "org.springframework.boot", "spring-boot-starter-data-jpa").withoutVersion()
 
             // jackson
             library("jackson-jsr310", "com.fasterxml.jackson.datatype", "jackson-datatype-jsr310").withoutVersion()

@@ -4,6 +4,6 @@ plugins {
 
 dependencies {
     implementation(project(":application"))
-    implementation(platform(libs.bom.spring.boot))
-    implementation(libs.spring.boot.jpa)
+    //implementation(platform(libs.bom.spring.boot))
+    //implementation(libs.spring.boot.jpa)
 }

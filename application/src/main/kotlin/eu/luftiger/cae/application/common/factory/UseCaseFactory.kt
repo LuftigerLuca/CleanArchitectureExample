@@ -1,6 +1,6 @@
-package eu.luftiger.cae.application.factory
+package eu.luftiger.cae.application.common.factory
 
-import eu.luftiger.cae.application.InputBoundary
+import eu.luftiger.cae.application.common.InputBoundary
 import kotlin.reflect.KClass
 
 interface UseCaseFactory {

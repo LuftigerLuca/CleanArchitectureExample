@@ -1,4 +1,4 @@
-package eu.luftiger.cae.application
+package eu.luftiger.cae.application.common
 
 interface InputBoundary<RQ, RS> {
     fun execute(request: RQ, presenter: OutputBoundary<RS>)
