@@ -1,7 +1,6 @@
 package eu.luftiger.cae.application.user.usecase
 
 import eu.luftiger.cae.application.common.ErrorResponse
-import eu.luftiger.cae.application.common.InputBoundary
 import eu.luftiger.cae.application.common.OutputBoundary
 import eu.luftiger.cae.application.security.PasswordHasher
 import eu.luftiger.cae.application.user.dto.request.RegisterUserRequestDto
@@ -12,7 +11,7 @@ import eu.luftiger.cae.domain.user.User
 import eu.luftiger.cae.domain.user.UserId
 import eu.luftiger.cae.domain.user.Username
 
-class RegisterUserUseCaseImpl(
+internal class RegisterUserUseCaseImpl(
     private val passwordHasher: PasswordHasher,
     private val userGateway: UserGateway
 ) : RegisterUserUseCase {
