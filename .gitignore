@@ -43,3 +43,4 @@ bin/
 
 ## Misc ##
 docker-compose.yml
+AGENTS.md
