@@ -1,9 +1,20 @@
 package eu.luftiger.cae.domain.task
 
+import eu.luftiger.cae.domain.result.Problem
+import eu.luftiger.cae.domain.result.Result
+import eu.luftiger.cae.domain.result.maxLength
+import eu.luftiger.cae.domain.result.notBlank
+import eu.luftiger.cae.domain.result.validateWithResult
+
 @JvmInline
-value class TaskDescription(val value: String) {
-    init {
-        require(value.isNotEmpty()) { "Description cannot be empty" }
-        require(value.length <= 500) { "Description cannot be longer than 500 characters" }
+value class TaskDescription private constructor(val value: String) {
+
+    companion object {
+        fun of(value: String): Result<TaskDescription> = validateWithResult {
+            notBlank("description", value)
+            maxLength("description", value, 500)
+
+            success { TaskDescription(value) }
+        }
     }
 }

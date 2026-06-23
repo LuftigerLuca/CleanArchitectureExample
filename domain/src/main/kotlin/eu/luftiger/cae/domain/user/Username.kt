@@ -1,10 +1,24 @@
 package eu.luftiger.cae.domain.user
 
+import eu.luftiger.cae.domain.result.Problem
+import eu.luftiger.cae.domain.result.Result
+import eu.luftiger.cae.domain.result.maxLength
+import eu.luftiger.cae.domain.result.minLength
+import eu.luftiger.cae.domain.result.notBlank
+import eu.luftiger.cae.domain.result.validateWithResult
+
 @JvmInline
-value class Username(val value: String) {
-    init {
-        require(value.isNotEmpty()) { "Username cannot be empty" }
-        require(value.length in 3..30) { "Username must be between 3 and 30 characters long" }
-        require(value.all { it.isLetterOrDigit() || it == '_' }) { "Username can only contain letters, digits, and underscores" }
+value class Username private constructor(val value: String) {
+
+    companion object {
+        fun of(value: String): Result<Username> = validateWithResult {
+            notBlank("username", value)
+            maxLength("username", value, 30)
+            minLength("username", value, 3)
+
+            rule({ value.all { it.isLetterOrDigit() || it == '_' } }) { Problem.Validation.InvalidFormat("username") }
+
+            success { Username(value) }
+        }
     }
 }
